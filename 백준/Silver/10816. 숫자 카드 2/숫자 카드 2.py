@@ -12,23 +12,9 @@ for i in arr:
     else:
         counting[i] = 1
 
-
-def binary_search(start, end, k):
-    if start > end:
-        return 0
-    mid = (start + end)//2
-    if arr[mid] == k:
-        return counting[k]
-    elif arr[mid] < k:
-        return binary_search(mid+1, end, k)
-    else:
-        return binary_search(start, mid-1, k)
-
-
 result = []
-# for i in arr2:
-#     result.append(binary_search(0, len(arr)-1, i))
+
 for i in arr2:
-    if i in counting.keys(): result.append(counting[i])
+    if i in counting: result.append(counting[i])
     else: result.append(0)
 print(*result)
