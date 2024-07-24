@@ -26,6 +26,9 @@ def binary_search(start, end, k):
 
 
 result = []
+# for i in arr2:
+#     result.append(binary_search(0, len(arr)-1, i))
 for i in arr2:
-    result.append(binary_search(0, len(arr)-1, i))
+    if i in counting.keys(): result.append(counting[i])
+    else: result.append(0)
 print(*result)
