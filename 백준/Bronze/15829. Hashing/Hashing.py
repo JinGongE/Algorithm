@@ -8,4 +8,5 @@ for i in string:
     alpha = ord(i)-96
     hashing += alpha * (31 ** n)
     n+=1
+    hashing %= 1234567891
 print(hashing)
