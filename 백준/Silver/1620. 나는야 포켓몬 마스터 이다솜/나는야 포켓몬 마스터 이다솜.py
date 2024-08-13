@@ -10,9 +10,8 @@ for i in range(1, n+1):
 rev_dic = {v:k for k, v in dic.items()}
 for i in range(m):
     s = sys.stdin.readline().rstrip()
-    try:
+    if s.isdigit():
         ans = dic[int(s)]
-    except:
-        
+    else:    
         ans = rev_dic[s]
     print(ans)
