@@ -1,37 +1,24 @@
 #include <stdio.h>
 
-#define MAX(x, y) (x)>(y) ? (x) : (y)
-
-int n;
-int memo[301][3] = {};
-int arr[301] = {};
-
-void f(int stair, int score, int cnt){
-	score += arr[stair];
-	if(memo[stair][cnt] > score && stair < n-1){
-		return;
-	}
-	else{
-		if(memo[stair][cnt] < score) memo[stair][cnt] = score;
-		
-		if(stair == n){
-			return;
-		}
-		else{
-			if(stair+2 <= n) f(stair+2, score, 1);
-			if(cnt<2) f(stair+1, score, cnt+1);
-		}		
-	}
-}
-
+#define max(x, y) (x)>(y) ? (x) : (y)
 
 int main(){
+	int n;
+	int arr[300] = {};
+	int dp[300] ={};
+	
 	scanf("%d", &n);
 	
-	for(int i=1; i<=n; i++){
+	for(int i=0; i<n; i++){
 		scanf("%d", &arr[i]);
 	}
-	f(0, 0, 0);
-	
-	printf("%d\n", MAX(memo[n][2], memo[n][1]));
+	dp[0] = arr[0];
+	if(n>1) dp[1] = arr[0] + arr[1];
+	if(n>2) dp[2] = max(arr[2] + arr[0], arr[1] + arr[2]);
+	if(n>3){
+		for(int i=3; i<n; i++){
+			dp[i] = max(arr[i] + dp[i-2], arr[i] + arr[i-1] + dp[i-3]);
+		}
+	}
+	printf("%d", dp[n-1]);
 }
